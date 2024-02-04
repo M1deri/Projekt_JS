@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRA</title>
+  <style>
+    body 
+    {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: url("spongebob.jpg");
+    }
+
+    #gra /* game-container */
+    {
+      margin-top: 20px;
+    }
+
+    .sorowce /* resource-container */
+    {
+      display: inline-block;
+      margin: 10px;
+    }
+
+    #liczba_drewna, #liczba_desek, #liczba_monet, #liczba_drwali, #liczba_budynkow
+    {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    button 
+    {
+      font-size: 16px;
+      margin: 5px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #budynki /* building-container */
+    {
+      margin-top: 20px;
+    }
+
+    .budynek 
+    {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+    #legenda
+    {
+      margin: 10px;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Symulator Drwala</h1>
+
+  <div class="sorowce">
+    <span id="liczba_drewna">Drewno: 0</span>
+    <span id="liczba_desek">Deski: 0</span>
+    <span id="liczba_monet">Monety: 0</span>
+    <span id="liczba_drwali">Drwale: 0</span>
+    <span id="liczba_budynkow">Budynki: 0</span>
+  </div>
+
+  <div id="gra">
+    <button onclick="ZbierzDrewno()">Zbierz drewno</button>
+    <button onclick="DrewnoNaDeski()">Przerób na deski</button>
+    <button onclick="SprzedajDeski()">Sprzedaj deski</button>
+    <button onclick="ZatrudnijDrwala()">Zatrudnij drwala</button>
+  </div>
+
+  <div id="budynki">
+    <div class="budynek" onclick="zbudujChate()">25$ Chatka</div>
+    <div class="budynek" onclick="ZbudujTartak()">75$ Tartak</div>
+  </div>
+  <div id="legenda">
+    <b>LEGENDA</b>
+    <pre style='color: blue'>
+        ■ Drwal = +2 drewna/5s
+        ■ Chata drwala = +5 drewna/5s
+        ■ Tartak = +2 deski/5s
+    </pre>
+  </div>
+  <script>
+    var drewno = 0;
+    var deski = 0;
+    var monety = 0;
+    var drwale = 0;
+    var DrewnoNaSek = 0;
+    var DeskiNaSek = 0;
+
+    function WypiszStaty() 
+    {
+      document.getElementById('liczba_drewna').innerText = `Drewno: ${drewno}`;
+      document.getElementById('liczba_desek').innerText = `Deski: ${deski}`;
+      document.getElementById('liczba_monet').innerText = `Monety: ${monety}`;
+      document.getElementById('liczba_drwali').innerText = `Drwale: ${drwale}`;
+      document.getElementById('liczba_budynkow').innerText = `Budynki: ${drwale}`;
+    }
+
+    function ZbierzDrewno() 
+    {
+      drewno += 1;
+      WypiszStaty();
+    }
+
+    function DrenowNaDeski() 
+    {
+      if (drewno >= 5) 
+      {
+        drewno -= 5;
+        deski += 1;
+        WypiszStaty();
+      } else 
+      {
+        alert('Nie masz wystarczająco drewna!');
+      }
+    }
+
+    function SprzedajDeski() 
+    {
+      if (deski >= 1) 
+      {
+        deski -= 1;
+        monety += 1; // Cena za jedną deskę
+        WypiszStaty();
+      } else 
+      {
+        alert('Nie masz wystarczająco desek!');
+      }
+    }
+
+    function ZatrudnijDrwala() 
+    {
+      if (coins >= 10) 
+      {
+        monety -= 10;
+        drwale += 1;
+        WypiszStaty();
+        Produkcja();
+      } else 
+      {
+        alert('Nie masz wystarczająco monet!');
+      }
+    }
+
+    function Produkcja() 
+    {
+      DrewnoNaSek = 2 * drwale;
+
+      setInterval(function () 
+      {
+        drewno += DrewnoNaSek;
+        deski += DeskiNaSek;
+        WypiszStaty();
+      }, 5000);
+    }
+
+    function zbudujChate() 
+    {
+      if (monety >= 25) 
+      {
+        monety -= 25;
+        DrewnoNaSek += 1;
+        WypiszStaty();
+      } else 
+      {
+        alert('Nie masz wystarczająco monet!');
+      }
+    }
+
+    function ZbudujTartak() 
+    {
+      if (coins >= 75) 
+      {
+        monety -= 75;
+        DeskiNaSek += 2;
+        WypiszStaty();
+      } else 
+      {
+        alert('Nie masz wystarczająco monet!');
+      }
+    }
+  </script>
+</body>
+</html>
