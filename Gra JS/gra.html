@@ -58,6 +58,23 @@
       text-align: center;
       font-weight: bold;
     }
+    .menu-przycisk 
+    {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .menu-przycisk:hover 
+    {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
@@ -73,10 +90,10 @@
   </div>
 
   <div id="gra">
-    <button onclick="ZbierzDrewno()">Zbierz drewno</button>
-    <button onclick="DrewnoNaDeski()">Przerób na deski</button>
-    <button onclick="SprzedajDeski()">Sprzedaj deski</button>
-    <button onclick="ZatrudnijDrwala()">Zatrudnij drwala</button>
+    <button onclick="ZbierzDrewno()" class="menu-przycisk">Zbierz drewno</button>
+    <button onclick="DrewnoNaDeski()" class="menu-przycisk">Przerób na deski</button>
+    <button onclick="SprzedajDeski()" class="menu-przycisk">Sprzedaj deski</button>
+    <button onclick="ZatrudnijDrwala()" class="menu-przycisk">Zatrudnij drwala</button>
   </div>
 
   <div id="budynki">
